@@ -30,7 +30,6 @@ CloudWatch
 flowchart LR
 
     Developer -->|Push Code| GitHub
-
     GitHub -->|Webhook Trigger| Jenkins
 
     Jenkins -->|Build & Test| SpringBootBuild
@@ -44,8 +43,9 @@ flowchart LR
     Terraform -->|Provision| ASG
     Terraform -->|Provision| RDS
 
-    ASG -->|Launch EC2 from| AWSAMI
-    ALB -->|Route Traffic| ASG
+    ASG -->|Launch EC2 from AMI| EC2
+    EC2 -->|Registered To| ALB
+    ALB -->|Route Traffic| EC2
 
     EC2 -->|Connect| RDS
     EC2 -->|Send Logs| CloudWatch
