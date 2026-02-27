@@ -26,9 +26,10 @@ Secrets Manager
 
 CloudWatch
 
-📌 Architecture Overview
-flowchart LR
+## 📌 Architecture Overview
 
+```mermaid
+flowchart LR
     Developer -->|Push Code| GitHub
     GitHub -->|Webhook Trigger| Jenkins
 
@@ -49,3 +50,4 @@ flowchart LR
 
     EC2 -->|Connect| RDS
     EC2 -->|Send Logs| CloudWatch
+```
