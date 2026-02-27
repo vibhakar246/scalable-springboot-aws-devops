@@ -1,20 +1,51 @@
-# Scalable Spring Boot Application on AWS
+🚀 Scalable Spring Boot Application on AWS
 
-This project demonstrates how to deploy a scalable and highly available Spring Boot application on AWS using DevOps tools and Infrastructure as Code.
+This project demonstrates how to deploy a scalable, highly available Spring Boot application on AWS using DevOps tools and Infrastructure as Code (IaC) principles.
 
-## Tools Used
-- Jenkins – CI/CD automation
-- Terraform – Infrastructure provisioning
-- Packer – AMI creation
-- Ansible – Server configuration
-- AWS – EC2, ALB, Auto Scaling, RDS, Secrets Manager, CloudWatch
+🛠️ Tech Stack
 
-## Workflow
-1. Jenkins builds the Spring Boot application
-2. Packer creates a custom AMI using Ansible
-3. Terraform provisions AWS infrastructure
-4. Application runs behind an Application Load Balancer
-5. Logs are sent to CloudWatch
+Jenkins – CI/CD automation
 
-## Author
-Vibhakar Kumar
+Packer – Custom AMI creation
+
+Ansible – Server configuration management
+
+Terraform – Infrastructure provisioning (IaC)
+
+AWS Services
+
+EC2
+
+Application Load Balancer (ALB)
+
+Auto Scaling Group (ASG)
+
+RDS
+
+Secrets Manager
+
+CloudWatch
+
+📌 Architecture Overview
+flowchart LR
+
+    Developer -->|Push Code| GitHub
+
+    GitHub -->|Webhook Trigger| Jenkins
+
+    Jenkins -->|Build & Test| SpringBootBuild
+    Jenkins -->|Create AMI| Packer
+    Packer -->|Provision via| Ansible
+    Packer -->|Custom AMI| AWSAMI
+
+    Jenkins -->|Trigger IaC| Terraform
+    Terraform -->|Provision| VPC
+    Terraform -->|Provision| ALB
+    Terraform -->|Provision| ASG
+    Terraform -->|Provision| RDS
+
+    ASG -->|Launch EC2 from| AWSAMI
+    ALB -->|Route Traffic| ASG
+
+    EC2 -->|Connect| RDS
+    EC2 -->|Send Logs| CloudWatch
